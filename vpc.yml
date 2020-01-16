@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Created by Prashant using CloudFormation"
+Resources: 
+  myVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      Tags:
+        - Key: Env
+          Value: Prod
+  
+  Pvt-Sbt-01:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId: 
+        Ref:  myVPC
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: Type
+          Value: Private
+
+  Pub-Sbnt-01:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      VpcId:
+        Ref:  myVPC
+      CidrBlock: 10.0.1.0/24
+      Tags:
+        - Key: Type
+          Value: Public
