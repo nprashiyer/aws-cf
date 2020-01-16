@@ -10,10 +10,10 @@ Resources:
         - Key: Env
           Value: Prod
   
-  Pvt-Sbt-01:
+  pvtsbt01:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: us-west-1a
       VpcId: 
         Ref:  myVPC
       CidrBlock: 10.0.0.0/24
@@ -21,10 +21,10 @@ Resources:
         - Key: Type
           Value: Private
 
-  Pub-Sbnt-01:
+  pubsbt01:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: us-west-1a
       VpcId:
         Ref:  myVPC
       CidrBlock: 10.0.1.0/24
