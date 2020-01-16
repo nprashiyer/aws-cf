@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: "Created by Prashant using CloudFormation"
+
 Resources: 
   myVPC:
     Type: AWS::EC2::VPC
@@ -13,7 +14,11 @@ Resources:
   pvtsbt01:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-west-1a
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+      
       VpcId: 
         Ref:  myVPC
       CidrBlock: 10.0.0.0/24
@@ -24,7 +29,11 @@ Resources:
   pubsbt01:
     Type: AWS::EC2::Subnet
     Properties:
-      AvailabilityZone: us-west-1a
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+
       VpcId:
         Ref:  myVPC
       CidrBlock: 10.0.1.0/24
@@ -32,7 +41,7 @@ Resources:
         - Key: Type
           Value: Public
 
-# Create Internet Gateway & attach to myVPC
+# Create Internet Gateway 
   igwName:
     Type: AWS::EC2::InternetGateway
 
