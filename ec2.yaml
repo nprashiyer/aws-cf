@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creae EC2 instance
+
+Parameters:
+  MyKey:
+    Description: Keys in the region
+    Type: AWS::EC2::KeyPair::KeyName
+
+  EnvType:
+    Description: Public or Private
+    Type: String
+    AllowedValues: [Public, Private]
+  
+Mappings:
+  AWSRegionLinux2AMI:
+    us-east-1:
+      id: "ami-062f7200baf2fa504"
+
+  SubnetID:
+    Public:
+      sbntid: "subnet-004182c8ea186d1ab"
+    Private:
+      sbntid: "subnet-00fdc1be6ab135ca2"
+
+Resources: 
+  myEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref MyKey
+      ImageId: !FindInMap [AWSRegionLinux2AMI, !Ref 'AWS::Region', id]
+      InstanceType: t2.micro
+      Monitoring: true
+      SubnetId: !FindInMap [SubnetID, !Ref EnvType, sbntid]
