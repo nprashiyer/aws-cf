@@ -85,8 +85,8 @@ Resources:
   pubsecgrp:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: For allowing SSH, RDP & HTTP
-      GroupDescription: 
+      GroupName: muPubSG
+      GroupDescription: For allowing SSH, RDP & HTTP
       VpcId: !Ref myVPC
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -102,8 +102,8 @@ Resources:
   pvtsecgrp:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: For allowing SSH from VM inside public
-      GroupDescription: 
+      GroupName: muPvtSG
+      GroupDescription: For allowing SSH from VM inside public
       VpcId: !Ref myVPC
       SecurityGroupIngress:
         - IpProtocol: tcp
