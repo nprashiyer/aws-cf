@@ -22,6 +22,12 @@ Mappings:
     Private:
       sbntid: "subnet-00fdc1be6ab135ca2"
 
+  SecGrpID:
+    Public:
+      sgid: "sg-095811a20311c44e3"
+    Private:
+      sgid: "sg-0955fd50781db0687"
+
 Resources: 
   myEC2Instance:
     Type: AWS::EC2::Instance
@@ -31,3 +37,4 @@ Resources:
       InstanceType: t2.micro
       Monitoring: true
       SubnetId: !FindInMap [SubnetID, !Ref EnvType, sbntid]
+      SecurityGroups: !FindInMap [SecGrpID, !Ref EnvType, sgid ]
