@@ -37,4 +37,5 @@ Resources:
       InstanceType: t2.micro
       Monitoring: true
       SubnetId: !FindInMap [SubnetID, !Ref EnvType, sbntid]
-      SecurityGroups: !FindInMap [SecGrpID, !Ref EnvType, sgid ]
+      SecurityGroupIds: 
+        - !FindInMap [SecGrpID, !Ref EnvType, sgid ]
