@@ -33,6 +33,7 @@ Resources:
         Fn::Select:
           - 0
           - Fn::GetAZs: ""
+      MapPublicIpOnLaunch: true
 
       VpcId:
         Ref:  myVPC
@@ -78,3 +79,34 @@ Resources:
         Ref: pubsbt01
       RouteTableId:
         Ref: publicRouteTable
+
+
+# Secuorty Groups for Public & Private vm
+  pubsecgrp:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: For allowing SSH, RDP & HTTP
+      GroupDescription: 
+      VpcId: !Ref myVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+
+  pvtsecgrp:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: For allowing SSH from VM inside public
+      GroupDescription: 
+      VpcId: !Ref myVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 10.0.1.0/24
