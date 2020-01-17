@@ -18,9 +18,9 @@ Mappings:
 
   SubnetID:
     Public:
-      sbntid: "subnet-004182c8ea186d1ab"
+      sbntid: "subnet-0668648fa342a5018"
     Private:
-      sbntid: "subnet-00fdc1be6ab135ca2"
+      sbntid: "subnet-0215a51ed620c5238"
 
   SecGrpID:
     Public:
